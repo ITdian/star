@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border:none;
+        }
+        body{
+            background: #000;
+        }
+        span{
+            position: absolute;
+            background-image: url(images/star.png);
+            -webkit-background-size:100%;
+            background-size:100%;
+            animation: flash 1s alternate infinite;
+            width: 35px;
+            height: 35px;
+        }
+        @keyframes flash {
+            0%{
+                opacity:0;
+            }
+            100%{
+                opacity:1;
+            }
+        }
+        span:hover{
+            transform: scale(2,2) rotate(180deg) !important;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        /*获取屏幕的宽高*/
+        var screenW = document.documentElement.clientWidth;
+        var screenH = document.documentElement.clientHeight;
+
+        /*创建星星*/
+        for( var i= 0,len = 300;i < len;i ++){
+                var span = document.createElement('span');
+                /*添加星星到body上*/
+                document.body.appendChild(span);
+                /*设置星星的位置*/
+                var pointX = Math.random()*screenW;
+                var pointY = Math.random()*screenH;
+
+                span.style.left = pointX + 'px';
+                span.style.top = pointY + 'px';
+
+                /*设置星星的大小*/
+                var scale = Math.random()*2;
+                span.style.transform = 'scale('+scale+','+scale+')';
+
+                /*设置出现星星的频率*/
+                var rate = Math.random()*1.5;
+                span.style.animationDelay = rate+'s';
+            }
+    }
+</script>
+</body>
+</html>
